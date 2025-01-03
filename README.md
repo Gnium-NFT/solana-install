@@ -1,2 +1,2 @@
 # solana-install
-Scripts to install a solana validator
+ Scripts to install a solana validator
