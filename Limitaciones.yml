@@ -1,0 +1,30 @@
+Limitaciones de las sugerencias
+Al revisar una sugerencia de Copilot Autofix, siempre debe tener en cuenta sus limitaciones de IA y editar los cambios según sea necesario antes de aceptarlos. También debes considerar la posibilidad de actualizar las pruebas de CI y la administración de dependencias de un repositorio antes de habilitar Copilot Autofix para code scanning. Para obtener más información, consulta Mitigación de las limitaciones de las sugerencias.
+
+Limitaciones de las sugerencias de código
+Idiomas humanos: el sistema usa principalmente datos en inglés, incluidos las solicitudes envíadas al sistema, el código visto por los LLM en sus conjuntos de datos y los casos de prueba usados para la evaluación interna. Las sugerencias generadas por el LLM pueden tener una tasa de éxito menor para el código fuente y los comentarios escritos en otros lenguajes y usando otros juegos de caracteres.
+Errores de sintaxis: el sistema puede sugerir correcciones que no sean cambios de código sintácticamente correctos, por lo que es importante ejecutar comprobaciones de sintaxis en las solicitudes de incorporación de cambios.
+Errores de ubicación: el sistema puede sugerir correcciones que sean código sintácticamente correcto, pero se sugieran en la ubicación incorrecta, lo que significa que si un usuario acepta una corrección sin editar la ubicación, introducirá un error de sintaxis.
+Errores semánticos: el sistema puede sugerir correcciones que sean válidas sintácticamente, pero que cambien la semántica del programa. El sistema no entiende la intención del programador o del código base sobre cómo debe comportarse el código. Tener una buena cobertura de pruebas ayuda a los desarrolladores a comprobar que una corrección no cambia el comportamiento del código base.
+Vulnerabilidades de seguridad y correcciones engañosas: el sistema puede sugerir correcciones que no solucionen la vulnerabilidad de seguridad subyacente o introduzcan nuevas vulnerabilidades de seguridad.
+Correcciones parciales: el sistema puede sugerir correcciones que solo aborden parcialmente la vulnerabilidad de seguridad o que solo conserven parcialmente la funcionalidad de código prevista. El sistema solo ve un pequeño subconjunto del código en el código base y no siempre produce soluciones óptimas o correctas globalmente.
+Limitaciones de las sugerencias de dependencia
+A veces, una corrección sugerida incluye un cambio en las dependencias del código base. Si usas un sistema de administración de dependencias, los cambios se resaltarán automáticamente para que el desarrollador los revise. Antes de combinar una solicitud de incorporación de cambios, comprueba siempre que los cambios de dependencia sean seguros y mantengan el comportamiento previsto del código base.
+
+Dependencias nuevas o actualizadas: el sistema puede sugerir agregar o actualizar dependencias de software como parte de una corrección sugerida. Por ejemplo, si se sugiere cambiar el archivo package.json de los proyectos de JavaScript para agregar dependencias desde npm.
+Dependencias no admitidas o no seguras: el sistema no sabe qué versiones de una dependencia existente son compatibles o seguras.
+Dependencias fabricadas: el sistema tiene conocimientos incompletos de las dependencias publicadas en el ecosistema más amplio. Esto puede provocar sugerencias que agreguen una nueva dependencia de software malintencionado que los atacantes han publicado con un nombre de dependencia estadísticamente probable.
+Mitigación de las limitaciones de las sugerencias
+La mejor manera de mitigar las limitaciones de las sugerencias de Copilot Autofix es seguir los procedimientos recomendados. Por ejemplo, el uso de pruebas de CI de solicitudes de incorporación de cambios para comprobar que los requisitos funcionales no se ven afectados y usan soluciones de administración de dependencias, como la API y la acción de revisión de dependencias. Para más información, consulta "Acerca de la revisión de dependencias".
+
+Es importante recordar que el autor de una solicitud de incorporación de cambios conserva la responsabilidad sobre cómo responden a los comentarios y a los cambios de código sugeridos, ya sean propuestos por compañeros o herramientas automatizadas. Los desarrolladores siempre deben examinar de forma crítica las sugerencias de los cambios de código. Si es necesario, deben editar los cambios sugeridos para asegurarse de que el código y la aplicación resultantes sean correctos, seguros, cumplan los criterios de rendimiento y con todos los demás requisitos funcionales y no funcionales de la aplicación.
+
+Note
+
+Si formas parte de la versión preliminar pública de Copilot Workspace for PRs, puedes hacer clic en Open in Workspace en una sugerencia de Copilot Autofix para abrir Copilot Workspace directamente en GitHub. Copilot Workspace for PRs permite ver y editar todas las sugerencias de Copilot Autofix y otras sugerencias de revisión para la solicitud de cambios, ejecutar pruebas de CI para confirmar que siguen pasando y, a continuación, aplicar varios cambios en un commit. Para obtener más información, vea «Uso de Copilot para ayudarte a trabajar con una solicitud de cambios».
+
+Pasos siguientes
+Acerca de las alertas de análisis de código
+Clasificar las alertas del escaneo de código en las solicitudes de cambios
+Resolución de alertas de análisis de código
+Deshabilitar Copilot Autofix para examen de código
